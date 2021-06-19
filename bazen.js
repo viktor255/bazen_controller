@@ -23,10 +23,11 @@ function turnOffPWM() {
 
 var MIN_ANGLE = 80;
 var MAX_ANGLE = 260;
-var ANGLE_TO_PUSH = 150;
+var ANGLE_TO_PUSH = 120;
 var DELAY_PERIOD = 20;
 const WAIT_BEFORE_START = 5000;
 const PUSH_LENGTH = 8000;
+const SHUTDOWN_TIMER = 60000;
 
 var currentAngle = MIN_ANGLE;
 
@@ -67,6 +68,20 @@ function writeNumberSlow(angle) {
 // wiringpi end
 
 
+// shutdown.js start
+
+// Require child_process
+const exec = require('child_process').exec;
+
+// Create shutdown function
+function shutdown(callback) {
+    exec('shutdown now', function (error, stdout, stderr) {
+        callback(stdout);
+    });
+}
+
+// shutdown.js end
+
 function pushButton(pushToON) {
     if (pushToON) {
         writeNumberSlow(ANGLE_TO_PUSH);
@@ -79,12 +94,16 @@ function pushButton(pushToON) {
     }
 }
 
-
 function main() {
     setUpPWMOut();
     writeNumber(MIN_ANGLE);
+
     setTimeout(() => pushButton(true), WAIT_BEFORE_START);
     setTimeout(() => pushButton(false), PUSH_LENGTH);
+
+    setTimeout(shutdown(function (output) {
+        console.log(output);
+    }), SHUTDOWN_TIMER);
 }
 
 main();
