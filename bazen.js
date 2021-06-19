@@ -83,8 +83,8 @@ function pushButton(pushToON) {
 function main() {
     setUpPWMOut();
     writeNumber(MIN_ANGLE);
-    setTimeout(pushButton(true), WAIT_BEFORE_START);
-    setTimeout(pushButton(false), PUSH_LENGTH);
+    setTimeout(() => pushButton(true), WAIT_BEFORE_START);
+    setTimeout(() => pushButton(false), PUSH_LENGTH);
 }
 
 main();
