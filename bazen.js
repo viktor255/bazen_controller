@@ -23,10 +23,10 @@ function turnOffPWM() {
 
 var MIN_ANGLE = 80;
 // var MAX_ANGLE = 260; // not currently used, anyway this is max angle value
-var ANGLE_TO_PUSH = 150;
+var ANGLE_TO_PUSH = 145;
 var DELAY_PERIOD = 20;
 const WAIT_BEFORE_START = 5000;
-const PUSH_LENGTH = 2200;
+const PUSH_LENGTH = 2000;
 const SHUTDOWN_TIMER = 60000;
 
 var currentAngle = MIN_ANGLE;
