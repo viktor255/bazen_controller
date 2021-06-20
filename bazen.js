@@ -26,7 +26,7 @@ var MIN_ANGLE = 80;
 var ANGLE_TO_PUSH = 150;
 var DELAY_PERIOD = 20;
 const WAIT_BEFORE_START = 5000;
-const PUSH_LENGTH = 8000;
+const PUSH_LENGTH = 2200;
 const SHUTDOWN_TIMER = 60000;
 
 var currentAngle = MIN_ANGLE;
@@ -94,7 +94,7 @@ function main() {
     writeNumber(MIN_ANGLE);
 
     setTimeout(() => pushButton(true), WAIT_BEFORE_START);
-    setTimeout(() => pushButton(false), PUSH_LENGTH);
+    setTimeout(() => pushButton(false), WAIT_BEFORE_START + PUSH_LENGTH);
 
     setTimeout(() => shutdown(), SHUTDOWN_TIMER);
 }
